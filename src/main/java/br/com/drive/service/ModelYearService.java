@@ -26,5 +26,10 @@ public class ModelYearService {
                 .orElseThrow();
     }
 
-
+    protected Optional<ModelYear> getOneByYearAndModelIdAndBrandId(Integer year, UUID modelId, UUID brandId){
+        return modelYearRepository.findByYearAndModelIdAndBrandId(year, modelId, brandId);
+    }
+    protected Optional<ModelYear> getOneByYearAndModelAndBrand(Integer year, Model model, Brand brand){
+        return modelYearRepository.findByYearAndModelIdAndBrandId(year, model.getId(), brand.getId());
+    }
 }
