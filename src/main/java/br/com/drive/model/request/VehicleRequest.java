@@ -1,7 +1,5 @@
 package br.com.drive.model.request;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -19,19 +15,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class VehicleRequest {
-    @NotEmpty
+    @NotNull(message = "a placa não pode ser nula")
+    @NotEmpty(message = "a placa não pode estar vazia")
 //    @Pattern(regexp = "[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}|[A-Z]{3}[0-9]{4}", message = "placa inválida")
     private String placa;
 
-    @NotNull(message = "id da marca não pode ser nulo")
+    @NotNull(message = "o id da marca não pode ser nulo")
     private UUID marcaId;
 
-    @NotNull
+    @NotNull(message = "o id do modelo não pode ser nulo")
     private UUID modeloId;
 
-    @NotNull
+    @NotNull(message = "o preço não pode ser nulo")
     private BigDecimal precoAnuncio;
 
-    @NotNull
+    @NotNull(message = "o ano não pode ser nulo")
     private Integer ano;
 }
