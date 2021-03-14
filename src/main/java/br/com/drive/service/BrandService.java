@@ -1,6 +1,7 @@
 package br.com.drive.service;
 
 import br.com.drive.entity.Brand;
+import br.com.drive.exception.ResourceNotFoundException;
 import br.com.drive.repository.BrandRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,6 @@ public class BrandService {
 
     protected Brand getOneOrThrow(UUID id){
         return brandRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(()-> new ResourceNotFoundException("Brand not found by id "+ id));
     }
 }

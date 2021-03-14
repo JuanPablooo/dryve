@@ -1,6 +1,7 @@
 package br.com.drive.service;
 
 import br.com.drive.entity.Model;
+import br.com.drive.exception.ResourceNotFoundException;
 import br.com.drive.repository.ModelRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class ModelService {
 
     private final ModelRepository modelRepository;
 
-    protected Model getOneOrThrow(UUID uuid){
-        return modelRepository.findById(uuid)
-                .orElseThrow();
+    protected Model getOneOrThrow(UUID id){
+        return modelRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Model not found by id "+ id));
     }
 }
