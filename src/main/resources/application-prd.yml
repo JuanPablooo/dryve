@@ -1,5 +1,6 @@
 spring:
   flyway:
+    enabled: true
     validate-on-migrate: true
   datasource:
     driver-class-name: org.postgresql.Driver
