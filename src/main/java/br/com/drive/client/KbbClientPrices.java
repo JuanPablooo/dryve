@@ -9,7 +9,7 @@ import java.util.Optional;
 
 interface KbbClientPrices {
     @GetMapping("/prices/{id}")
-    ResponseEntity<Optional<KbbPrice>> getOne(@PathVariable Long id);
+    ResponseEntity<KbbPrice> getOne(@PathVariable Long id);
 
     @GetMapping("/prices/")
     ResponseEntity<List<KbbPrice>> getAll(@PathVariable Long id);

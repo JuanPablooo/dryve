@@ -12,7 +12,6 @@ import br.com.drive.model.request.VehicleRequest;
 import br.com.drive.model.response.VehicleDetailedResponse;
 import br.com.drive.model.response.VehicleResponse;
 import br.com.drive.repository.VehicleRepository;
-import br.com.drive.repository.custom.CustomVehicleRepository;
 import br.com.drive.util.SearchFilterParamVehicles;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,16 +52,16 @@ public class VehicleService {
     }
 
     public Page<VehicleResponse> getAllVehiclesPageable(Pageable pageable, SearchFilterParamVehicles filters){
-//        Page<Vehicle> vehiclesFound = vehicleRepository.findAll(pageable);
         Page<Vehicle> vehiclesFound = vehicleRepository.findAllVehicleWithFilters(pageable, filters);
         List<VehicleResponse> vehicleResponsesFound = vehicleMapper.vehiclesToVehicleResponses(vehiclesFound.getContent());
-        return new PageImpl<VehicleResponse>(vehicleResponsesFound, pageable, vehiclesFound.getTotalElements());
+        return new PageImpl<>(vehicleResponsesFound, pageable, vehiclesFound.getTotalElements());
     }
 
     public Vehicle create(VehicleRequest vehicleRequest) {
         ModelYear modelYearFound = getModelYearByVehicleRequest(vehicleRequest);
-        Optional<KbbPrice> optKbbPrice = kbbClient.getOne(modelYearFound.getKbbId()).getBody();
-        KbbPrice kbbPriceFound = optKbbPrice.orElseThrow(()->new IllegalArgumentException("price kbb is not found"));
+
+        KbbPrice kbbPriceFound = getKbbPriceOrThrow(modelYearFound.getKbbId());
+
         Vehicle vehicleToBeSaved = Vehicle.builder()
                 .modelYear(modelYearFound)
                 .kbbPrice(kbbPriceFound.getPrice())
@@ -70,6 +69,12 @@ public class VehicleService {
                 .adPrice(vehicleRequest.getPrecoAnuncio())
                 .build();
         return vehicleRepository.save(vehicleToBeSaved);
+    }
+
+    protected KbbPrice getKbbPriceOrThrow(Long id){
+        KbbPrice kbbPriceFound = kbbClient.getOne(id).getBody();
+        if(kbbPriceFound == null) throw new ResourceNotFoundException("price kbb is not found");
+        return kbbPriceFound;
     }
 
     // this method return detail error, but is not the most better on performer

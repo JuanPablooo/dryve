@@ -7,10 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -23,9 +20,9 @@ import java.util.Set;
 public class Model extends AbstractEntity{
     private String name;
 
-    @JsonIgnore
+
     @ManyToOne
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brand_id", foreignKey=@ForeignKey(name= "brand_to_model_fk"))
     private Brand brand;
 
     @OneToMany(mappedBy = "model")

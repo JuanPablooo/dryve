@@ -1,5 +1,6 @@
 package br.com.drive.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,6 +21,7 @@ import java.util.Set;
 public class Brand extends AbstractEntity {
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "brand")
     private Set<Model> models = new LinkedHashSet<>();
 }
