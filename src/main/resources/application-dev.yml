@@ -1,0 +1,23 @@
+spring:
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://db/postgres?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC&useSSL=false
+    username: postgres
+    password: 123
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: ${PORT:8080}
+kbb:
+  client:
+    url: "https://6048bdf1fb5dcc0017968e3f.mockapi.io/api/v1/kbb"

@@ -1,0 +1,26 @@
+version: "3"
+services:
+  drive-api:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: drive/api
+    ports:
+    - "8080:8080"
+    - "5005:5005"
+    environment:
+      - ADDITIONAL_OPT=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xmx1G -Xms128m -XX:MaxMetaspaceSize=128m
+      - PROFILE=dev
+    links:
+      - db
+  db:
+    image: postgres
+    environment:
+     - POSTGRES_PASSWORD=123
+#     - POSTGRES_DB=banco
+#     - POSTGRES_USER=user
+
+    ports:
+     - "300:5432"
+    volumes:
+    - ./db/pg_volume/:/var/lib/postgresql/data

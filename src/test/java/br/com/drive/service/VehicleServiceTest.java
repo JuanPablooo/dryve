@@ -156,9 +156,11 @@ class VehicleServiceTest {
 
         Assertions.assertThat(vehicleSaved).isNotNull();
 
-        Assertions.assertThat(vehicleSaved.getAdPrice())
-                .isNotNull()
-                .isEqualTo(vehicleToBeSend.getPrecoAnuncio());
+        Assertions.assertThat(vehicleSaved.getAdPrice()).isNotNull();
+
+
+        Assertions.assertThat(vehicleSaved.getAdPrice().compareTo(vehicleToBeSend.getPrecoAnuncio()));
+
 
         Assertions.assertThat(vehicleSaved.getModelYear()).isNotNull();
 
