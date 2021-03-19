@@ -1,8 +1,23 @@
-# DRYVE
-## Rest api de cadastros de veículos 
+<h1 align="center"> 
+    DRYVE 
+</h1>
+
+## Rest API para cadastros de veículos 
+
+<div align="center">
+
+<img src="https://img.shields.io/apm/l/spring-boot"/>
+<img width="50px" height="15" src="https://img.shields.io/badge/Codepen-000000?style=for-the-badge&logo=codepen&logoColor=white"/>
+<img width="50px" height="15" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+<img width="50px" height="15" src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white"/>
+<img width="50px" height="15" src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
+<img width="50px" height="15" src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/>
+<img width="50px" height="15" src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
+</div>
+
 
 # Tecnologias 
-## java spring boot 
+## java spring boot <img src="https://img.shields.io/apm/l/spring-boot"/>
 ## versionamento de dados : flyway
 ## integração : feign client
 
