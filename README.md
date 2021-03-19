@@ -49,7 +49,6 @@ $ docker-compose up --build --force-recreate
 
 # O servidor inciará na porta:8080 - acesse <http://localhost:8080>
 ```
-<img align="center" height="20px" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
 
 # Tecnologias 
 ### Linguagem  : <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
